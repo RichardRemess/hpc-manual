@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting started with the cluster &mdash; RTU HPC 2.6 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Job Management" href="07_job_managment.html" />
+    <link rel="prev" title="User Interfaces" href="05_user_interfaces.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            RTU HPC
+          </a>
+              <div class="version">
+                2.6
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="01_getting_access.html">Getting access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_general_gudelines.html">General guidelines for using HPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_hardware.html">HPC hardware specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_software.html">Software Installed on the Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_user_interfaces.html">User Interfaces</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started with the cluster</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#accessing-the-cluster">Accessing the cluster</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tools-for-accessing-command-line">Tools for accessing command line</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#graphical-interface-through-command-line">Graphical interface through command line</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#x2go-remote-desktop">X2Go remote desktop</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#user-workspace">User workspace</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#copy-files-to-the-cluster">Copy files to the cluster</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#using-software-modules">Using software modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#private-modules">Private Modules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="07_job_managment.html">Job Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_gpu_cuda.html">Using GPUs and CUDA on the cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_containers.html">Running containers in the cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_accounting.html">Usage Accounting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_online_resources.html">Useful online resources</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">RTU HPC</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Getting started with the cluster</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/06_getting_started.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="getting-started-with-the-cluster">
+<h1>Getting started with the cluster<a class="headerlink" href="#getting-started-with-the-cluster" title="Permalink to this heading"></a></h1>
+<section id="accessing-the-cluster">
+<h2>Accessing the cluster<a class="headerlink" href="#accessing-the-cluster" title="Permalink to this heading"></a></h2>
+<p>Work with the cluster occurs via a dedicated server (login node) with Centos7 Linux operating system and job management tools installed. After connection, the user is able to use the command line with Unix commands, and it is possible to edit and compile a code, submit a job (simulation) and monitor its execution on computing resources. From the command line the user can also call graphical tools/windows described below in the document.<br />
+<strong>We ask users not to use the login nodes for the resource-consuming operations. The login nodes are meant only for copying files to or from the cluster, preparing jobs, submitting jobs to a queue and monitoring results. Testing a short (&lt;5 min.) job or compiling a code on a few CPU cores is acceptable.</strong>.<br />
+Also note that running code or simulation on the login node (also opening a software GUI) does not automatically ensure that the job will run on computing nodes. This requires you to use the job management tools described in section Job Management.</p>
+<p>Command-line access parameters:</p>
+<ul class="simple">
+<li><p>Primary login node: ui-2.hpc.rtu.lv</p></li>
+<li><p>Backup login node: ui-1.hpc.rtu.lv</p></li>
+<li><p>Protocol: Secure Shell (SSH)</p></li>
+<li><p>Port:22</p></li>
+<li><p>For authentication use the login name and password you received when registered for the cluster access.</p></li>
+<li><p>Access is ensured from any IP address.</p></li>
+</ul>
+<section id="tools-for-accessing-command-line">
+<h3>Tools for accessing command line<a class="headerlink" href="#tools-for-accessing-command-line" title="Permalink to this heading"></a></h3>
+<p>SSH connection can be done with the following tools:</p>
+<ul>
+<li><p>If you use a Linux or MacOS operating system, you can connect to a cluster with SSH by opening the command line (terminal) and running the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">&lt;</span><span class="n">username</span><span class="o">&gt;</span><span class="nd">@ui</span><span class="o">-</span><span class="mf">1.</span><span class="n">hpc</span><span class="o">.</span><span class="n">rtu</span><span class="o">.</span><span class="n">lv</span>
+</pre></div>
+</div>
+</li>
+<li><p>For Windows operating system, you can use PuTTY (download it from: http://www.putty.org/). The parameters you should enter are given above in the Command line access parameters section. The example is shown in the figure below.<br />
+<img alt="Putty" src="_images/putty_conf.png" /></p>
+<p>After you open the connection, a login name and password are required. After entering them, it is possible to use a remote terminal with Unix commands.<br />
+<img alt="Putty" src="_images/putty_window.png" /></p>
+</li>
+</ul>
+</section>
+<section id="graphical-interface-through-command-line">
+<h3>Graphical interface through command line<a class="headerlink" href="#graphical-interface-through-command-line" title="Permalink to this heading"></a></h3>
+<p>When using cluster through an SSH client (like PuTTY), not only the command line terminal but also graphical tools may be used. SSH ensures X11 forwarding from the cluster to user’s computer.<br />
+Use the <code class="docutils literal notranslate"><span class="pre">-X</span></code> parameter when you connect to a cluster in a Linux environment.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">-</span><span class="n">X</span> <span class="o">&lt;</span><span class="n">username</span><span class="o">&gt;</span><span class="nd">@ui</span><span class="o">-</span><span class="mf">1.</span><span class="n">hpc</span><span class="o">.</span><span class="n">rtu</span><span class="o">.</span><span class="n">lv</span>
+</pre></div>
+</div>
+<p>To use this function in MS Windows, additional preparation steps must be taken on the user’s personal computer..</p>
+<ol class="arabic simple">
+<li><p>Install X Windows server which can be download from: <a class="reference external" href="https://sourceforge.net/projects/vcxsrv/">https://sourceforge.net/projects/vcxsrv/</a>.</p></li>
+<li><p>Run it in the background as a service. The first time you start, you may be prompted to change the settings, leave the default ones.</p></li>
+<li><p>In addition, you’ll need to enable X11 forwarding in a PuTTY configuration (Connection –&gt; SSH –&gt; X11).</p></li>
+</ol>
+<p>An example: Opening MATLAB GUI from the command line. To start the Matlab graphical interface on the cluster login node (ui-1.hpc.rtu.lv), connect to the cluster command line by using the graphical session forwarding described above.<br />
+On the login node execute:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">matlab</span><span class="o">/</span><span class="n">R2018a</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">matlab</span> <span class="o">&amp;</span>
+</pre></div>
+</div>
+<p>A program window will be opened on your computer, but all operations will run remotely on the cluster. The MATLAB interface provides the necessary tools for queuing and executing a task on computing nodes.</p>
+</section>
+<section id="x2go-remote-desktop">
+<h3>X2Go remote desktop<a class="headerlink" href="#x2go-remote-desktop" title="Permalink to this heading"></a></h3>
+<p>Instructions will be added.</p>
+<p><img alt="x2go window" src="_images/x2go.png" /></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="user-workspace">
+<h2>User workspace<a class="headerlink" href="#user-workspace" title="Permalink to this heading"></a></h2>
+<p>Each user has prepared workspace, where to store files related to the jobs. By logging into the system using command-line, the user is automatically directed to the work directory: <code class="docutils literal notranslate"><span class="pre">/home/username</span></code> or <code class="docutils literal notranslate"><span class="pre">/home_beegfs/username</span></code>.<br />
+Directory is shared between all cluster nodes using networked file system (NFS or BeeGFS), therefore no need to copy files from login node to compute node where job is executed as well as between the computing nodes for parallel jobs.<br />
+<img alt="User workspace" src="_images/workspace.png" /></p>
+<p>The users can install/compile software in their workspace if the installation process does not require administrator (root) permissions.</p>
+<section id="copy-files-to-the-cluster">
+<h3>Copy files to the cluster<a class="headerlink" href="#copy-files-to-the-cluster" title="Permalink to this heading"></a></h3>
+<p>To copy files from your computer to the cluster login node, MS Windows users can use tools as WinScp or FAR file manager. WinScp can be downloaded here: <a class="reference external" href="https://winscp.net/eng/download.php">https://winscp.net/eng/download.php</a>. Connection is similar to that of PuTTY:<br />
+<img alt="winscp" src="_images/winscp_conf.png" /></p>
+<p>On the left, you’ll see your computer files, and the right – work directory on the cluster. You can drag and drop files with a computer mouse from one window to another:<br />
+<img alt="winscp" src="_images/winscp_window.png" /></p>
+<p>On a MacOS or Linux operating system, use a command-line SCP command or any convenient graphical tool. An example of copying a file from a Linux command line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>scp –r my.file username@ui-1.hpc.rtu.lv:
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="using-software-modules">
+<h2>Using software modules<a class="headerlink" href="#using-software-modules" title="Permalink to this heading"></a></h2>
+<p>Users can use modules (<a class="reference external" href="http://modules.sourceforge.net/">Environment Modules</a>) to prepare their environment for running different software, compilers, and libraries available on the cluster. Modules provide an opportunity to access preinstalled software in the cluster instead of installing/compiling everything yourself, and also convenient use of different versions of the same software. To get a list of all possible modules (software and tools pre-installed on the cluster), execute command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">avail</span>
+</pre></div>
+</div>
+<p><img alt="module avail" src="_images/module_avail.png" />
+A software module is loaded with the command <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">&lt;module_name&gt;</span></code>. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">gnu8</span><span class="o">/</span><span class="mf">8.3.0</span>
+</pre></div>
+</div>
+<p>It sets the path (PATH) to executable files, libraries (LD_LIBRARY_PATH), and other required environment variables for a particular software.
+Loading modules for the tools (packages) included in Linux distributive usually is not required.<br />
+The module must be loaded on the node where software is started. If a job is executed on a computing node/s, the module must be loaded on it as well or should be passed from a login node with job management commands.<br />
+Get the list of allready loaded modules:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="nb">list</span>
+</pre></div>
+</div>
+<p>To unload a module:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">unload</span> <span class="n">gnu8</span><span class="o">/</span><span class="mf">8.3.0</span>
+</pre></div>
+</div>
+<p>More about using modules: <a class="reference external" href="http://modules.sourceforge.net/">http://modules.sourceforge.net/</a>.</p>
+<section id="private-modules">
+<h3>Private Modules<a class="headerlink" href="#private-modules" title="Permalink to this heading"></a></h3>
+<p>If a user compiles the software in his/her work directory, it is also possible to create their own modules. Briefly:</p>
+<ol class="arabic">
+<li><p>Create a directory <code class="docutils literal notranslate"><span class="pre">/home/&lt;username&gt;/privatemodules</span></code></p></li>
+<li><p>Create your own module into this directory. Samples are in <code class="docutils literal notranslate"><span class="pre">/opt/exp_soft/modulefiles</span></code> directory</p></li>
+<li><p>Activate your private module directory when starting the work by executing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">use</span><span class="o">.</span><span class="n">own</span>
+</pre></div>
+</div>
+<p>You can put this command in ~/.bashrc file.</p>
+</li>
+<li><p>Then load your own module</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="o">&lt;</span><span class="n">module_name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="05_user_interfaces.html" class="btn btn-neutral float-left" title="User Interfaces" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="07_job_managment.html" class="btn btn-neutral float-right" title="Job Management" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, RTU HPC center.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

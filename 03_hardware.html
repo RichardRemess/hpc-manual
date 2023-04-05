@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HPC hardware specifications &mdash; RTU HPC 2.6 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Software Installed on the Cluster" href="04_software.html" />
+    <link rel="prev" title="General guidelines for using HPC" href="02_general_gudelines.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            RTU HPC
+          </a>
+              <div class="version">
+                2.6
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="01_getting_access.html">Getting access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_general_gudelines.html">General guidelines for using HPC</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">HPC hardware specifications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#general-system-parameters">General System parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#access-network">Access Network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hpc-cluster-rudens">HPC cluster RUDENS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#login-nodes">Login nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cpu-computing-nodes">CPU computing nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gpu-computing-nodes">GPU computing nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#high-memory-nodes">High memory nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cluster-management-software">Cluster management software</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#data-storage-systems">Data Storage Systems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#primary-beegfs-2-network-attached-storage-1-3-pb-home-beegfs-scratch-beegfs">Primary: BeeGFS #2 Network-attached Storage (1.3 PB, /home_beegfs; /scratch_beegfs)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#isilon-nas-238-tb-home">Isilon NAS (238 TB, /home)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#beegfs-1-nas-104-tb-mnt-beegfs">BeeGFS #1 NAS (104 TB, /mnt/beegfs)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#backup-nas-600-tb">Backup NAS (600 TB)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scratch-disks-31-tb-in-total">Scratch disks (31 TB in total)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#storage-connection-diagram">Storage connection diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#node-names-and-features">Node names and features</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="04_software.html">Software Installed on the Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_user_interfaces.html">User Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_getting_started.html">Getting started with the cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_job_managment.html">Job Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_gpu_cuda.html">Using GPUs and CUDA on the cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_containers.html">Running containers in the cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_accounting.html">Usage Accounting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_online_resources.html">Useful online resources</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">RTU HPC</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">HPC hardware specifications</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/03_hardware.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="hpc-hardware-specifications">
+<h1>HPC hardware specifications<a class="headerlink" href="#hpc-hardware-specifications" title="Permalink to this heading"></a></h1>
+<p>RTU HPC cluster “Rudens” consists of 35 computing nodes for job execution and one head node which performs cluster management function. All nodes are inter-connected with fast InfiniBand network. Each compute node is equipped with two x86_64 architecture processors (CPUs), and some of the nodes additionally with 2 or 4 Nvidia Tesla graphical accelerators (GPU). Cluster architecture is heterogeneous, combining nodes of different generations and technical parameters.</p>
+<p>Several network-attached storage systems are available for storing user data with a total capacity of 1.6 PB. For tasks with intensive I/O, a special NVMe disk array with BeeGFS parallel file system is available.</p>
+<p>Users connect to a separate login node which provides a work environment and tools for running jobs in the cluster. Job management is provided by Torque/Moab tools.</p>
+<p><img alt="alt text" src="_images/data_center.jpg" /></p>
+<section id="general-system-parameters">
+<h2>General System parameters<a class="headerlink" href="#general-system-parameters" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>35 computing nodes</p></li>
+<li><p>1344 CPU cores</p></li>
+<li><p>12 TB RAM (up to 2 TB per process)</p></li>
+<li><p>20 Graphical Nvidia Tesla processors (GPU)</p></li>
+<li><p>181 TFlops overall performance (75 Tflops x86 + 106 Tflops GPU)</p></li>
+<li><p>1.6 PB data storage</p></li>
+<li><p>10-100 Gb/s access network</p></li>
+<li><p>56-100 Gb/s InfiniBand interconnection</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="access-network">
+<h2>Access Network<a class="headerlink" href="#access-network" title="Permalink to this heading"></a></h2>
+<p>10 Gbps connection with Latvian Academic computer network, 100 Gbps to European Academic Computer Network GEANT and Genomics Data Network, and 2 Gbps to commercial Internet providers in Latvia is provided.</p>
+</section>
+<hr class="docutils" />
+<section id="hpc-cluster-rudens">
+<h2>HPC cluster RUDENS<a class="headerlink" href="#hpc-cluster-rudens" title="Permalink to this heading"></a></h2>
+<section id="login-nodes">
+<h3>Login nodes<a class="headerlink" href="#login-nodes" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>ui-2.hpc.rtu.lv (primary): 2 x AMD EPYC 7502P (Rome) &#64; 2.5GHz (kopā 64 kodoli), RAM 256 GB DDR4, 3.5 TB NVMe RAID 0, 100 Gb/s Ethernet access network, 100 Gbiti/s Infiniband EDR</p></li>
+<li><p>ui-1.hpc.rtu.lv: 2 x Intel Xeon CPU E5-2680 v3 &#64; 2.50GHz (total 24 cores), 128 GB RAM, 10 Gb/s Ethernet access network, 56 Gb/s InfiniBand FDR</p></li>
+</ul>
+</section>
+<section id="cpu-computing-nodes">
+<h3>CPU computing nodes<a class="headerlink" href="#cpu-computing-nodes" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>3 nodes Dell EMC PowerEdge R6525, (wn62-wn64, feature=epyc): 2 x AMD Epyc 7713 (Milan) &#64; 2 GHz (total 128 cores per node), RAM 512 GB DDR4, 3.5 TB NVMe RAID 0, 100 Gbiti/s Infiniband EDR</p></li>
+<li><p>10 nodes Dell EMC PowerEdge R640 (wn02-wn10, feature=vasara): 2 x Intel(R) Xeon(R) Gold 6154 CPU &#64; 3.00GHz (total 36 cores per node), RAM 384 GB DDR4 2666 MHz ECC, 1TB SSD, Infiniband EDR 100 Gb/s</p></li>
+<li><p>11 nodes Dell PowerEdge R630 (wn45-wn55, feature=rudens): 2 x Intel(R) Xeon(R) CPU E5-2680 v3 &#64; 2.50GHz (total 24 cores per node), RAM: 128 GB DDR4 2133MHz ECC, 200 GB SSD, Infiniband FDR 56 Gb/s</p></li>
+</ul>
+</section>
+<section id="gpu-computing-nodes">
+<h3>GPU computing nodes<a class="headerlink" href="#gpu-computing-nodes" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>1 GPU mezgls Lenovo SR670 V2 (wn44, feature=lenovo,a100):2 x Intel Xeon Gold 6348 gen.3 &#64; 2.6Hz (total 56 cores per node), <strong>4 x NVIDIA A100 GPU</strong>, 40 GB HBM2, NVLink, 512 GB DDR4 3200 MHz ECC, 5.8 TB NVMe SSD, Infiniband EDR 100 Gb/s</p></li>
+<li><p>2 GPU mezgli Dell EMC PowerEdge C4140 (wn59-wn60, feature= vasara,v100): 2 x Intel(R) Xeon(R) Gold 6130 CPU &#64; 2.10GHz (total 32 cores per node), <strong>4 x NVIDIA Tesla V100 GPU</strong> per node, 16 GB HBM2, 5120 CUDA kodoli, 192 GB DDR4 2666 MHz ECC, 240 GB SSD, Infiniband EDR 100 Gb/s</p></li>
+<li><p>4 GPU mezgli Dell PowerEdge R730 (wn43,wn56-wn58, feature= rudens,k40): 2 x Intel(R) Xeon(R) CPU E5-2680 v3 &#64; 2.50GHz (total 24 cores per node), <strong>2 x NVIDIA Tesla K40</strong> GPU per node, 12GB GDDR5, 2888 CUDA kodoli, RAM 128 GB DDR4 2133MHz ECC, 200 GB SSD, Infiniband FDR 56 Gbiti/s</p></li>
+</ul>
+</section>
+<section id="high-memory-nodes">
+<h3>High memory nodes<a class="headerlink" href="#high-memory-nodes" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>1 node SuperMicro AS-1124US-TNRP (wn61, feature=epyc7f72): 2 x AMD EPYC 7F72 CPU &#64; 3.2 GHz (total 48 cores per node), <strong>RAM 2 TB DDR4</strong> 3200MHz DDR4, 1TB SSD, InfiniBand EDR 100 Gb/s</p></li>
+<li><p>1 node Dell PowerEdge R940 (wn01): 4 x Intel Xeon Gold 6140 CPU &#64; 2.30GHz (total 72 cores per node), <strong>RAM 1.5 TB DDR4</strong> 2666 MHz ECC, 1.8 TB SSD, Ethernet 10 Gb/s</p></li>
+</ul>
+</section>
+<section id="cluster-management-software">
+<h3>Cluster management software<a class="headerlink" href="#cluster-management-software" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Operating system (OS): Linux Centos 7.9</p></li>
+<li><p>Job Management: Torque 6.1.1.1/ Moab 9.1.1</p></li>
+<li><p>Accounting: Moab Accounting Manager</p></li>
+<li><p>OS image provisioning: xCAT</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="data-storage-systems">
+<h2>Data Storage Systems<a class="headerlink" href="#data-storage-systems" title="Permalink to this heading"></a></h2>
+<section id="primary-beegfs-2-network-attached-storage-1-3-pb-home-beegfs-scratch-beegfs">
+<h3>Primary: BeeGFS #2 Network-attached Storage (1.3 PB, /home_beegfs; /scratch_beegfs)<a class="headerlink" href="#primary-beegfs-2-network-attached-storage-1-3-pb-home-beegfs-scratch-beegfs" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>2 nodes SuperStorage 6029P</p></li>
+<li><p>Parallel file system BeeGFS</p></li>
+<li><p>100Gbit/s Infiniband</p></li>
+<li><p>30TB NVMe fast disk pool</p></li>
+<li><p>1.3 PB NL SAS disk pool</p></li>
+</ul>
+</section>
+<section id="isilon-nas-238-tb-home">
+<h3>Isilon NAS (238 TB, /home)<a class="headerlink" href="#isilon-nas-238-tb-home" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>8 nodes EMC Isilon x200</p></li>
+<li><p>Distributive file system OneFS</p></li>
+<li><p>NFS client connection</p></li>
+<li><p>40 Gb/s InfiniBand connection with the cluster</p></li>
+<li><p>238 TB SATA SDD + SATA Spinning disks</p></li>
+</ul>
+</section>
+<section id="beegfs-1-nas-104-tb-mnt-beegfs">
+<h3>BeeGFS #1 NAS (104 TB, /mnt/beegfs)<a class="headerlink" href="#beegfs-1-nas-104-tb-mnt-beegfs" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>2 nodes: SuperStorage 6029P and Lenovo x3650 M5</p></li>
+<li><p>Parallel file system BeeGFS</p></li>
+<li><p>10 Gb/s  Infiniband with cluster</p></li>
+<li><p>100 TB SATA HDD disk pool</p></li>
+</ul>
+</section>
+<section id="backup-nas-600-tb">
+<h3>Backup NAS (600 TB)<a class="headerlink" href="#backup-nas-600-tb" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>VTrak D5800xd + JBOD</p></li>
+<li><p>NFS client connection</p></li>
+<li><p>600 TB NL SAS disk pool</p></li>
+</ul>
+</section>
+<section id="scratch-disks-31-tb-in-total">
+<h3>Scratch disks (31 TB in total)<a class="headerlink" href="#scratch-disks-31-tb-in-total" title="Permalink to this heading"></a></h3>
+<p>Computing nodes are equipped with local SDD disks with capacity up to 3.5 TB</p>
+</section>
+<section id="storage-connection-diagram">
+<h3>Storage connection diagram<a class="headerlink" href="#storage-connection-diagram" title="Permalink to this heading"></a></h3>
+<p><img alt="hpc_storage" src="_images/storage.png" /></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="node-names-and-features">
+<h2>Node names and features<a class="headerlink" href="#node-names-and-features" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>RAM</p></th>
+<th class="head"><p>CPU</p></th>
+<th class="head"><p>CPU cores</p></th>
+<th class="head"><p>GPUs</p></th>
+<th class="head"><p>Local disk</p></th>
+<th class="head"><p>qsub features</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>rudens</p></td>
+<td><p>cluseter head</p></td>
+<td><p>32 GB</p></td>
+<td><p>E5-2620 v3</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>ui-1</p></td>
+<td><p>login</p></td>
+<td><p>64 GB</p></td>
+<td><p>E5-2650 v3</p></td>
+<td><p>20</p></td>
+<td><p>0</p></td>
+<td><p>/scratch</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>ui-2</p></td>
+<td><p>login</p></td>
+<td><p>256 GB</p></td>
+<td><p>EPYC 7502P</p></td>
+<td><p>64</p></td>
+<td><p>0</p></td>
+<td><p>/scratch</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>wn01</p></td>
+<td><p>compute-smp, high-mem</p></td>
+<td><p>1.48 TB</p></td>
+<td><p>Gold 6140</p></td>
+<td><p>72</p></td>
+<td><p>0</p></td>
+<td><p>/scratch</p></td>
+<td><p>dell vasara highmem centos7 largescratch</p></td>
+</tr>
+<tr class="row-even"><td><p>wn02-wn11</p></td>
+<td><p>compute</p></td>
+<td><p>384 GB</p></td>
+<td><p>Gold 6154</p></td>
+<td><p>36</p></td>
+<td><p>0</p></td>
+<td><p>/scratch</p></td>
+<td><p>dell vasara centos7 largescratch gold6154</p></td>
+</tr>
+<tr class="row-odd"><td><p>wn45-wn55</p></td>
+<td><p>compute</p></td>
+<td><p>128 GB</p></td>
+<td><p>E5-2680 v3</p></td>
+<td><p>24</p></td>
+<td><p>0</p></td>
+<td><p>/scratch</p></td>
+<td><p>dell rudens centos7</p></td>
+</tr>
+<tr class="row-even"><td><p>wn44</p></td>
+<td><p>compute-gpu</p></td>
+<td><p>512 GB</p></td>
+<td><p>Gold 6348</p></td>
+<td><p>56</p></td>
+<td><p>4</p></td>
+<td><p>/scratch, 5.8 TB</p></td>
+<td><p>lenovo gpu a100</p></td>
+</tr>
+<tr class="row-odd"><td><p>wn43, wn56-wn58</p></td>
+<td><p>compute-gpu</p></td>
+<td><p>128 GB</p></td>
+<td><p>E5-2680 v3</p></td>
+<td><p>24</p></td>
+<td><p>2</p></td>
+<td><p>/scratch</p></td>
+<td><p>dell rudens gpu k40 centos7</p></td>
+</tr>
+<tr class="row-even"><td><p>wn59-wn60</p></td>
+<td><p>compute-gpu</p></td>
+<td><p>192 GB</p></td>
+<td><p>Gold 6130</p></td>
+<td><p>32</p></td>
+<td><p>4</p></td>
+<td><p>/scratch</p></td>
+<td><p>vasara vasara-32 gpu v100 centos7</p></td>
+</tr>
+<tr class="row-odd"><td><p>wn61</p></td>
+<td><p>compute, high-mem</p></td>
+<td><p>2 TB</p></td>
+<td><p>Epyc 7F72</p></td>
+<td><p>48</p></td>
+<td><p>0</p></td>
+<td><p>/scratch, 1.8 TB</p></td>
+<td><p>epyc7f72 largescratch</p></td>
+</tr>
+<tr class="row-even"><td><p>wn62-wn64</p></td>
+<td><p>compute</p></td>
+<td><p>512 GB</p></td>
+<td><p>Epyc 7713</p></td>
+<td><p>128</p></td>
+<td><p>0</p></td>
+<td><p>/scratch, 3.5 TB</p></td>
+<td><p>epyc epyc7713 centos7</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="02_general_gudelines.html" class="btn btn-neutral float-left" title="General guidelines for using HPC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="04_software.html" class="btn btn-neutral float-right" title="Software Installed on the Cluster" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, RTU HPC center.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

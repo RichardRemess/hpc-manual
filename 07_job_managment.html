@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Job Management &mdash; RTU HPC 2.6 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Using GPUs and CUDA on the cluster" href="08_gpu_cuda.html" />
+    <link rel="prev" title="Getting started with the cluster" href="06_getting_started.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            RTU HPC
+          </a>
+              <div class="version">
+                2.6
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="01_getting_access.html">Getting access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_general_gudelines.html">General guidelines for using HPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_hardware.html">HPC hardware specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_software.html">Software Installed on the Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_user_interfaces.html">User Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_getting_started.html">Getting started with the cluster</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Job Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#queuing-running-a-job">Queuing/Running a Job</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simple-job">Simple Job</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#interactive-job">Interactive Job</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#job-requirements">Job requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parallel-mpi-job">Parallel (MPI) job</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#job-variables">Job variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cancelling-a-job">Cancelling a job</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#job-queues">Job queues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#monitoring-jobs-and-available-resources">Monitoring jobs and available resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#job-efficiency">Job efficiency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#jobs-with-intensive-input-output">Jobs with intensive Input/Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transition-between-torque-and-slurm-commands">Transition between Torque and Slurm Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="08_gpu_cuda.html">Using GPUs and CUDA on the cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_containers.html">Running containers in the cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_accounting.html">Usage Accounting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_online_resources.html">Useful online resources</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">RTU HPC</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Job Management</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/07_job_managment.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="job-management">
+<h1>Job Management<a class="headerlink" href="#job-management" title="Permalink to this heading"></a></h1>
+<p>The cluster uses a dedicated job management system (software) that helps to organize users’ jobs. When a user requests specific resources (e.g. particular number of CPU cores or amount of memory) for the job, the management system finds and allocates resources and ensures exclusive access to them (the job does not overlap with other users’ jobs). Virtual queue is used to fairly divide cluster resources between jobs of many users. Job execution in the cluster has the following steps:</p>
+<ol class="arabic simple">
+<li><p>Logging into the cluster</p></li>
+<li><p>Queuing a job</p></li>
+<li><p>Executing and monitoring a job</p></li>
+<li><p>Receiving the results</p></li>
+</ol>
+<p>The job management system used in RTU cluster is Torque/Moab. Torque is a basic batch system, and Moab provides higher-level job scheduling and cluster management functionality.</p>
+<hr class="docutils" />
+<section id="queuing-running-a-job">
+<h2>Queuing/Running a Job<a class="headerlink" href="#queuing-running-a-job" title="Permalink to this heading"></a></h2>
+<p>Before a job gets to a computing node and starts to execute, it is placed in a virtual queue. The queue organises resource allocation in a multi-user system where the number of jobs and their requirements may exceed the number of available resources (CPU, memory). When resources become available, usually the job waiting in the queue longer will be executed next. Users do not have to monitor the resource availability, job movement in the queue and execution is automatic. If there is no waiting jobs in a queue (meaning that the resources are available), then the job is started immediately.</p>
+<section id="simple-job">
+<h3>Simple Job<a class="headerlink" href="#simple-job" title="Permalink to this heading"></a></h3>
+<p>Jobs are queued using special Torque/Moab cluster user’s tools (<a class="reference external" href="https://support.adaptivecomputing.com/wp-content/uploads/2021/02/torque/torque.htm#topics/torque/2-jobs/submittingManagingJobs.htm">detailed documentation available online</a>).
+Command for submitting a simple job (batch script):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qsub</span> <span class="n">test</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">test.sh</span></code> is a bash script with commands to execute when the job gets to a computing node. It ensures execution of a batch job without user’s participation. Examples of the batch scripts for launching various software applications on the cluster “Rudens” and other useful information can be found in the directory:  <code class="docutils literal notranslate"><span class="pre">/opt/exp_soft/user_info</span></code>.</p>
+</section>
+<section id="interactive-job">
+<h3>Interactive Job<a class="headerlink" href="#interactive-job" title="Permalink to this heading"></a></h3>
+<p>Alternatively, an interactive job can be used instead of batch. The interactive mode is convenient for testing and debugging jobs or in case graphical tools are used. Start an interactive job:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qsub</span> <span class="o">-</span><span class="n">I</span>
+</pre></div>
+</div>
+<p>Automatically a remote terminal on a computing node will be opened where a user can execute the needed commands by writing them in the command line. The command is similar to <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">&lt;hostname&gt;</span></code>, with the difference that resources are reserved and there will not be any conflicts with other users.</p>
+<p>If it is necessary to open a graphical window in an interactive regime, add <code class="docutils literal notranslate"><span class="pre">-X</span></code> parameter.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qsub</span> <span class="o">-</span><span class="n">X</span> <span class="o">-</span><span class="n">I</span>
+</pre></div>
+</div>
+</section>
+<section id="job-requirements">
+<h3>Job requirements<a class="headerlink" href="#job-requirements" title="Permalink to this heading"></a></h3>
+<p>Users can indicate the job parameters and requirements, like the name of the queue to be used or the time necessary for the job. This information will be used to find the most suitable resources for the job.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>qsub –N my_job –q fast –l walltime=00:00:30 test.sh
+</pre></div>
+</div>
+<p>You can add requirements at the beginning of the job script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#PBS -N my_job             # Job name</span>
+<span class="c1">#PBS -l walltime=00:00:30  # Expected job maximum duration</span>
+<span class="c1">#PBS -l nodes=1:ppn=1      # Computing resources needed</span>
+<span class="c1">#PBS -q fast               # Queue</span>
+<span class="c1">#PBS -j oe                 # Combine standard output and error in the same file</span>
+</pre></div>
+</div>
+<p>The requirements can be entered in either the command line or the script, but highest priority is given to the requirements in the command line in case they repeat.</p>
+<p>How to request specific computing resources?  Define the requirements with qsub -l and indicate these parameters:</p>
+<ul>
+<li><p>number of cores: <code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">procs=12</span></code></p></li>
+<li><p>number of nodes and cores (use this notation for MPI jobs): <code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">nodes=2:ppn=12</span></code></p></li>
+<li><p>particular node (may result in more queue time):<code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">nodes=wn62:ppn=64</span></code> or <code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">nodes=wn02:ppn=18+wn03:ppn=18</span></code></p></li>
+<li><p>use nodes only from the list: <code class="docutils literal notranslate"><span class="pre">-W</span> <span class="pre">x=HOSTLIST:wn02,wn03,wn04,wn05,wn06,wn07,wn08,wn09,wn10,wn11</span></code></p></li>
+<li><p>number of GPUs: <code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">nodes=1:ppn=12:gpus=2</span></code></p></li>
+<li><p>necessary amount of memory (per CPU core): <code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">nodes=1:ppn=12,pmem=1g</span></code></p></li>
+<li><p>necessary amount of memory (for a job): <code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">nodes=1:ppn=12,mem=12g</span></code></p></li>
+<li><p>Require computing nodes with particular features. The features are usually used on clusters with non-homogeneous nodes. For example, to guarantee the job exaction on the latest generation nodes (with 36 CPU cores per node): <code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">feature=vasara</span></code></p>
+<p><img alt="node features" class="align-center" src="_images/node_features.png" /></p>
+</li>
+</ul>
+<p>For full list of node names and features, please refer to the section HPC hardware specifications.</p>
+</section>
+<section id="parallel-mpi-job">
+<h3>Parallel (MPI) job<a class="headerlink" href="#parallel-mpi-job" title="Permalink to this heading"></a></h3>
+<p>A job is divided between several cores in a node or between cluster nodes using Message Passing Interface (MPI) protocol. Queuing a parallel job requiring 24 cores (2 nodes × 12 cores in each node):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qsub</span> <span class="o">-</span><span class="n">l</span> <span class="n">nodes</span><span class="o">=</span><span class="mi">2</span><span class="p">:</span><span class="n">ppn</span><span class="o">=</span><span class="mi">12</span> <span class="n">run_mpi</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p>We advise to use OpenMPI versions which are pre-compiled for the cluster with Torque support.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">mpi</span><span class="o">/</span><span class="n">openmpi</span><span class="o">-&lt;</span><span class="n">version</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>An example of <code class="docutils literal notranslate"><span class="pre">run_mpi.sh</span></code> script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#PBS -N my_mpi_job</span>
+<span class="c1">#PBS -l walltime=00:00:30</span>
+<span class="c1">#PBS -q batch</span>
+<span class="c1">#PBS -j oe</span>
+
+<span class="c1">#change directory to working directory</span>
+<span class="n">cd</span> <span class="n">mpi_tests</span> 	
+
+<span class="c1">#load OpenMPI module</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">mpi</span><span class="o">/</span><span class="n">openmpi</span><span class="o">/</span><span class="n">openmpi</span><span class="o">-</span><span class="n">default</span>
+
+<span class="c1">#compile code with MPI C++ compiler</span>
+<span class="n">mpic</span><span class="o">++</span> <span class="n">MPItest</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">o</span> <span class="n">MPItest</span><span class="o">.</span><span class="n">o</span>
+
+<span class="c1">#execute program in parllel</span>
+<span class="n">mpirun</span> <span class="o">-</span><span class="n">np</span> <span class="mi">24</span> <span class="o">./</span><span class="n">MPItest</span><span class="o">.</span><span class="n">o</span>
+</pre></div>
+</div>
+<p>MPI job examples can be found in the cluster directory: <code class="docutils literal notranslate"><span class="pre">/opt/exp_soft/users_info/mpi</span></code></p>
+</section>
+<section id="job-variables">
+<h3>Job variables<a class="headerlink" href="#job-variables" title="Permalink to this heading"></a></h3>
+<p>It is convenient to use variables in a job script that are set automatically when the job arrives on a computing node.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">$PBS_O_WORKDIR</span></code> – the directory from which the job was submitted to queued</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$PBS_NODEFILE</span></code>  ¬– list of the nodes reserved for the job</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$PBS_GPUFILE</span></code>	– list of GPUs reserved for the task</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$PBS_NUM_NODES</span></code> – number of nodes reserved for the job</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$PBS_NUM_PPN</span></code> – reserved number of cores for each node</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$PBS_NP</span></code> – the total number of cores reserved for the job</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$PBS_JOBID</span></code> – job identifier</p></li>
+</ul>
+<p>For example, to go to the directory from which the job was submitted:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd $PBS_O_WORKDIR
+</pre></div>
+</div>
+<p>To get a list of all possible variables, start an interactive job (<code class="docutils literal notranslate"><span class="pre">qsub</span> <span class="pre">–I</span></code>) and execute the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">PBS</span>
+</pre></div>
+</div>
+</section>
+<section id="cancelling-a-job">
+<h3>Cancelling a job<a class="headerlink" href="#cancelling-a-job" title="Permalink to this heading"></a></h3>
+<p>Running or waiting jobs can be cancelled by executing a command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qdel</span> <span class="o">&lt;</span><span class="n">job_id</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">canceljob</span> <span class="o">&lt;</span><span class="n">job_id</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>&lt;job_id&gt; – unique identifier of a job.</p>
+<p>Stop all user’s jobs:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qdel</span> <span class="s1">&#39;all&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="job-queues">
+<h2>Job queues<a class="headerlink" href="#job-queues" title="Permalink to this heading"></a></h2>
+<p>There are several queues on the HPC cluster “Rudens”, which differ by the job duration and amount of available resources:</p>
+<ul class="simple">
+<li><p><strong>batch</strong>: default queue which is suitable for tasks without specific requirements. Maximum job duration is up to 96 hours.</p></li>
+<li><p><strong>fast</strong>: queue for short jobs (up to 8 h) with higher queue priority. Well suited for interactive and testing jobs. Only a single job per user can be in running state at a time.</p></li>
+<li><p><strong>long</strong>: queue for time-consuming tasks (up to 2 weeks).</p></li>
+<li><p><strong>highmem</strong>: queue to access high memory nodes: maximum 1,5 TB per core. The queue is available only after agreement with HPC centre.</p></li>
+</ul>
+<p>Detailed description of the queues is available in Annex 1.</p>
+<p>Queue is selected with the <code class="docutils literal notranslate"><span class="pre">qsub</span> <span class="pre">–q</span> <span class="pre">&lt;queue</span> <span class="pre">name&gt;</span></code> parameter. If the queue is not specified, the job will be placed in the default queue “batch”.</p>
+</section>
+<hr class="docutils" />
+<section id="monitoring-jobs-and-available-resources">
+<h2>Monitoring jobs and available resources<a class="headerlink" href="#monitoring-jobs-and-available-resources" title="Permalink to this heading"></a></h2>
+<p>Command to check the status of submitted jobs:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qstat</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">R</span></code> – running, <code class="docutils literal notranslate"><span class="pre">C</span></code> – completed, <code class="docutils literal notranslate"><span class="pre">Q</span></code> - queued</p>
+<p>To see all running jobs queued or running in cluster (for all users):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">showq</span>
+</pre></div>
+</div>
+<p>Command to find out available computing resources:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">showbf</span>
+</pre></div>
+</div>
+<p>Information about node availability:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nodes</span>
+</pre></div>
+</div>
+<p>For details about job execution, as well as the reasons for the job being held from execution in the queue:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">checkjob</span> <span class="o">&lt;</span><span class="n">job_id</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">vvv</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="job-efficiency">
+<h2>Job efficiency<a class="headerlink" href="#job-efficiency" title="Permalink to this heading"></a></h2>
+<p>It’s useful to track the resources that the job actually consumes. The reservation of multiple CPU cores or nodes does not yet guarantee that the job will efficiently use all allocated resources.</p>
+<p>CPU usage efficiency for all user’s jobs in execution (command should be executed on login node).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>showq –r –u &lt;username&gt;
+</pre></div>
+</div>
+<p><img alt="efficiency" class="align-center" src="_images/job_effiicency.png" /></p>
+<p>EFFIC column shows the average ratio (%) between the actual processor time and reserved one</p>
+<ul class="simple">
+<li><p>Optimal 70-100%;</p></li>
+<li><p>Below 50% – job uses allocated resources inefficiently – not all CPU cores are loaded or job mostly is waiting for slow input/output operations. Recommendation: Reduce the number of parallel processes;</p></li>
+<li><p>Above 110% – not recommended; indicates using more CPU resources than reserved;</p></li>
+</ul>
+<p>Local resource usage on a computing node:</p>
+<ol class="arabic">
+<li><p>Find out, on which node a job is running</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qstat</span> <span class="o">-</span><span class="n">n</span> <span class="o">&lt;</span><span class="n">job_id</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><img alt="efficiency" class="align-center" src="_images/exec_node.png" />
+or</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>showq -r -u $USER
+</pre></div>
+</div>
+<p>Let’s assume the job is running on computing node wn01.</p>
+</li>
+<li><p>Connect with SSH to computing node wn01</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">wn01</span>
+</pre></div>
+</div>
+</li>
+<li><p>Use Linux tools for monitoring:
+<code class="docutils literal notranslate"><span class="pre">htop</span></code>, <code class="docutils literal notranslate"><span class="pre">dstat</span></code>, <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code>, <code class="docutils literal notranslate"><span class="pre">iostat</span></code>, <code class="docutils literal notranslate"><span class="pre">nfsstat</span></code></p>
+<p>For example, the efficiency of CPU usage with command <code class="docutils literal notranslate"><span class="pre">htop</span></code></p>
+<p><img alt="htop" class="align-center" src="_images/htop.png" /></p>
+<p>Track the GPU usage efficiency with command <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code></p>
+<p><img alt="nvidie-smi" class="align-center" src="_images/nvidie-smi.png" /></p>
+</li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="jobs-with-intensive-input-output">
+<h2>Jobs with intensive Input/Output<a class="headerlink" href="#jobs-with-intensive-input-output" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/home/&lt;username&gt;</span></code> or <code class="docutils literal notranslate"><span class="pre">/home_beegfs/&lt;username&gt;</span></code> the user’s work directory and files are located on network attached disk array. Benefits: the directory is shared between all nodes, therefore it is easy to use it. Disadvantages: insufficient speed for many parallel I/O operations (working with a large number of small files, analysis of sequencing data, etc.).</p>
+<p><code class="docutils literal notranslate"><span class="pre">/scratch</span></code> Fast local SSD disk on a computing node.</p>
+<ul class="simple">
+<li><p>intended to be used only during job execution</p></li>
+<li><p>provides space up to 5.8 TB (depending on the node)</p></li>
+<li><p>requires manual copying of files to and from it
+Users are encouraged to use the /scratch directory for data intensive jobs.</p></li>
+</ul>
+<p>An example of using <code class="docutils literal notranslate"><span class="pre">/scratch</span></code> directory. Commands are executed on a computing node by using a batch script, or in an interactive mode.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SCRATCH=/scratch/$PBS_JOBID
+mkdir –m 700 $SCRATCH
+# copy data to scratch
+cp $HOME/input_data $SCRATCH
+# run program
+./my_prog –input $SCRATCH/input_data –ouput $SCRATCH/output_data
+# copy data back to home
+cp –r $SCRATCH/output_data $HOME/
+rm -rf $SCRATCH
+</pre></div>
+</div>
+<p>Not all nodes are equipped with local SSD disks, therefore please specify an appropriate feature parameter when you submit a job, for example, if a larger scratch disk is required:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#PBS -l feature=largescratch</span>
+</pre></div>
+</div>
+<p><img alt="large scratch" class="align-center" src="_images/largescratch_feature.png" /></p>
+<p>Multiple I/O-intensive user jobs or parallel processes on the same computing node can overload network storage and reduce job efficiency.</p>
+<ul>
+<li><p>To perform only 1 user task on each computing node, add the following job requirements:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#PBS -W x=naccesspolicy:UNIQUEUSER</span>
+</pre></div>
+</div>
+</li>
+<li><p>Choose the optimal number of parallel processes (threads) – not necessarily a higher number means an increase in speed.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="transition-between-torque-and-slurm-commands">
+<h2>Transition between Torque and Slurm Commands<a class="headerlink" href="#transition-between-torque-and-slurm-commands" title="Permalink to this heading"></a></h2>
+<p>Cheat sheet for those who have previously used the SLURM task management system (source: <a class="reference external" href="https://openhpc.community">https://openhpc.community/</a>).
+<a class="reference internal" href="_images/torque_slurm.png"><img alt="large scratch" class="align-center" src="_images/torque_slurm.png" style="width: 1000px;" /></a></p>
+<hr class="docutils" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="06_getting_started.html" class="btn btn-neutral float-left" title="Getting started with the cluster" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="08_gpu_cuda.html" class="btn btn-neutral float-right" title="Using GPUs and CUDA on the cluster" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, RTU HPC center.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

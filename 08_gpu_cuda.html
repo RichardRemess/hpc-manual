@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Using GPUs and CUDA on the cluster &mdash; RTU HPC 2.6 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Running containers in the cluster" href="09_containers.html" />
+    <link rel="prev" title="Job Management" href="07_job_managment.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            RTU HPC
+          </a>
+              <div class="version">
+                2.6
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="01_getting_access.html">Getting access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_general_gudelines.html">General guidelines for using HPC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_hardware.html">HPC hardware specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_software.html">Software Installed on the Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_user_interfaces.html">User Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_getting_started.html">Getting started with the cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_job_managment.html">Job Management</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Using GPUs and CUDA on the cluster</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#requesting-gpus-for-a-job">Requesting GPUs for a job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#development-using-cuda-toolkit">Development using CUDA Toolkit</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#preparing-the-working-environment">Preparing the Working Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage-examples-for-the-cluster">Usage examples for the cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gpu-code-generation-options">GPU Code Generation Options</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="09_containers.html">Running containers in the cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_accounting.html">Usage Accounting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_online_resources.html">Useful online resources</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">RTU HPC</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Using GPUs and CUDA on the cluster</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/08_gpu_cuda.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="using-gpus-and-cuda-on-the-cluster">
+<h1>Using GPUs and CUDA on the cluster<a class="headerlink" href="#using-gpus-and-cuda-on-the-cluster" title="Permalink to this heading"></a></h1>
+<p>This section describes best practices for using GPUs and CUDA framework on the HPC cluster.</p>
+<section id="requesting-gpus-for-a-job">
+<h2>Requesting GPUs for a job<a class="headerlink" href="#requesting-gpus-for-a-job" title="Permalink to this heading"></a></h2>
+<p>GPUs can be requested in a similar way as other cluster resources.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qsub</span> <span class="o">-</span><span class="n">l</span> <span class="n">nodes</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="n">ppn</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="n">gpus</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="n">shared</span>
+</pre></div>
+</div>
+<p>Additionally, it is possible to specify compute mode for a GPU:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">shared</span></code>: GPU available for multiple processes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">exclusive_process</span></code>: only one compute process is allowed to run on the GPU
+To request specific GPU model additionally specify the feature parameter: <code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">feature=v100</span></code></p></li>
+</ul>
+<p>GPUs available on the cluster “Rudens”:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>GPU model</p></th>
+<th class="head"><p>Arch</p></th>
+<th class="head"><p>CUDA</p></th>
+<th class="head"><p>FP64 power</p></th>
+<th class="head"><p>Tensor power</p></th>
+<th class="head"><p>Memory</p></th>
+<th class="head"><p>NVLink</p></th>
+<th class="head"><p>qsub feature</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Tesla K40</p></td>
+<td><p>Kepler</p></td>
+<td><p>3.5</p></td>
+<td><p>1.3 Tflops</p></td>
+<td><p>N/A</p></td>
+<td><p>12 GB</p></td>
+<td><p>N/A</p></td>
+<td><p>k40</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tesla V100</p></td>
+<td><p>Volta</p></td>
+<td><p>7.0</p></td>
+<td><p>7.5 Tflops</p></td>
+<td><p>112  Tflops</p></td>
+<td><p>16 GB</p></td>
+<td><p>N/A</p></td>
+<td><p>v100</p></td>
+</tr>
+<tr class="row-even"><td><p>A100</p></td>
+<td><p>Ampere</p></td>
+<td><p>8.0</p></td>
+<td><p>9.7 Tflops</p></td>
+<td><p>312 Tflops</p></td>
+<td><p>40 GB</p></td>
+<td><p>Bridge 600 GB/s</p></td>
+<td><p>a100</p></td>
+</tr>
+</tbody>
+</table>
+<p>For more details, please see the section “HPC hardware specifications”.</p>
+</section>
+<section id="development-using-cuda-toolkit">
+<h2>Development using CUDA Toolkit<a class="headerlink" href="#development-using-cuda-toolkit" title="Permalink to this heading"></a></h2>
+<p>CUDA (Compute Unified Device Architecture) is a parallel computing platform and application programming interface (API) model created by NVIDIA. It allows software developers to use a CUDA-enabled graphics processing unit (GPU) for general purpose processing, an approach known as General Purpose GPU (GPGPU) computing. Find more information on the availability of GPUs in the previous section.</p>
+<section id="preparing-the-working-environment">
+<h3>Preparing the Working Environment<a class="headerlink" href="#preparing-the-working-environment" title="Permalink to this heading"></a></h3>
+<p>You need to load a version of the CUDA library (and compiler). Several versions of the CUDA library are available, list them with <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">avail</span> <span class="pre">cuda</span></code> command. Different versions of CUDA are activated via the ‘module load’ command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">cuda</span><span class="o">/</span><span class="n">cuda</span><span class="o">-&lt;</span><span class="n">version</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">cuda</span>
+</pre></div>
+</div>
+<p>CUDA tools/libraries installed on the cluster:</p>
+<ul class="simple">
+<li><p>C++ extensions for CUDA programming</p></li>
+<li><p>CuDNN library for neural networks</p></li>
+<li><p>CuBLAS</p></li>
+<li><p>NCCL</p></li>
+</ul>
+</section>
+<section id="usage-examples-for-the-cluster">
+<h3>Usage examples for the cluster<a class="headerlink" href="#usage-examples-for-the-cluster" title="Permalink to this heading"></a></h3>
+<p>Job examples available here: <code class="docutils literal notranslate"><span class="pre">/opt/exp_soft/user_info/cuda</span></code>.
+The following Linux-related graphical tools can be used for programming and debugging:
+<code class="docutils literal notranslate"><span class="pre">emacs</span></code> and <code class="docutils literal notranslate"><span class="pre">ddd</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>module load cuda
+emacs hello-world.cu
+nvcc -g -G hello-world.cu –o hello-world.out
+ddd –debugger cuda-gdb hello-world.out
+</pre></div>
+</div>
+<p>NVIDIA Nsight, a development environment based on Eclipse and development by NVIDIA, can be used.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">cuda</span>
+<span class="n">nsight</span>
+</pre></div>
+</div>
+<p>Note. To be able to use GUI tools, X11 forwarding must be performed to provide a remote graphical interface.</p>
+</section>
+<section id="gpu-code-generation-options">
+<h3>GPU Code Generation Options<a class="headerlink" href="#gpu-code-generation-options" title="Permalink to this heading"></a></h3>
+<p>To achieve the best possible performance whilst being portable, GPU code should be generated for the architecture(s) it will be executed upon.</p>
+<p>That is controlled by specifying <code class="docutils literal notranslate"><span class="pre">-gencode</span></code> arguments to NVCC which, unlike the <code class="docutils literal notranslate"><span class="pre">-arch</span></code> and <code class="docutils literal notranslate"><span class="pre">-code</span></code> arguments, allows for ‘fatbinary’ executables that are optimised for multiple device architectures.</p>
+<p>Each <code class="docutils literal notranslate"><span class="pre">-gencode</span></code> argument requires two values, the virtual architecture and real architecture, for use in NVCC’s two-stage compilation. I.e. <code class="docutils literal notranslate"><span class="pre">-gencode=arch=compute_60,</span> <span class="pre">code=sm_60</span></code> specifies a virtual architecture of compute_60 and real architecture <code class="docutils literal notranslate"><span class="pre">sm_60</span></code>.</p>
+<p>The minimum specified virtual architecture must be less than or equal to the GPU’s Compute Capability used to execute the code.
+To build a CUDA application which targets any GPU on HPC cluster “Rudens”, use the following -gencode arguments (for CUDA 8.0):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nvcc</span> <span class="n">filename</span><span class="o">.</span><span class="n">cu</span> \
+   <span class="o">-</span><span class="n">gencode</span><span class="o">=</span><span class="n">arch</span><span class="o">=</span><span class="n">compute_35</span><span class="p">,</span><span class="n">code</span><span class="o">=</span><span class="n">sm_35</span> \
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="07_job_managment.html" class="btn btn-neutral float-left" title="Job Management" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="09_containers.html" class="btn btn-neutral float-right" title="Running containers in the cluster" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, RTU HPC center.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

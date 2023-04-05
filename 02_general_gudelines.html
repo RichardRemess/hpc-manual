@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>General guidelines for using HPC &mdash; RTU HPC 2.6 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="HPC hardware specifications" href="03_hardware.html" />
+    <link rel="prev" title="Getting access" href="01_getting_access.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            RTU HPC
+          </a>
+              <div class="version">
+                2.6
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="01_getting_access.html">Getting access</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">General guidelines for using HPC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#terms-of-use">Terms of Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#best-practice">Best practice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#technical-support">Technical Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="03_hardware.html">HPC hardware specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_software.html">Software Installed on the Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_user_interfaces.html">User Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_getting_started.html">Getting started with the cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_job_managment.html">Job Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_gpu_cuda.html">Using GPUs and CUDA on the cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_containers.html">Running containers in the cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_accounting.html">Usage Accounting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_online_resources.html">Useful online resources</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">RTU HPC</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">General guidelines for using HPC</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/02_general_gudelines.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="general-guidelines-for-using-hpc">
+<h1>General guidelines for using HPC<a class="headerlink" href="#general-guidelines-for-using-hpc" title="Permalink to this heading"></a></h1>
+<section id="terms-of-use">
+<h2>Terms of Use<a class="headerlink" href="#terms-of-use" title="Permalink to this heading"></a></h2>
+<p>Terms of use are available online here: <a class="reference external" href="https://hpc.rtu.lv/hpc/hpc-services/using-hpc/?lang=en">Terms of Use</a></p>
+</section>
+<section id="best-practice">
+<h2>Best practice<a class="headerlink" href="#best-practice" title="Permalink to this heading"></a></h2>
+<p>If possible, avoid the execution of jobs locally on the login nodes. Use it only to submit a job to a queue, to compile programs, and test short jobs.</p>
+<p>Try to indicate the necessary walltime (<code class="docutils literal notranslate"><span class="pre">qsub</span> <span class="pre">-l</span> <span class="pre">walltime=01:00:00</span></code>) so that other users can forecast their queue time.</p>
+<p>The maximum execution time of one job (simulation) is two weeks. After this period, the job will be automatically cancelled. If more time is needed for a job, the user can make a separate agreement with HPC Centre.</p>
+<p>If a job requires intensive disk operation (I/O), it is advised to use a local SSD disk instead of the network directory (<code class="docutils literal notranslate"><span class="pre">/home</span></code> or <code class="docutils literal notranslate"><span class="pre">/home_beegfs</span></code>). The local disk is mounted to the directory /scratch. When the job is completed, the files created in this directory should be removed by a user manually.</p>
+<p>Evaluate the performance of parallel (MPI) jobs by using a various number of nodes/cores to select the most suitable one for your job. A larger number of cores does not always ensure faster execution of a job.</p>
+</section>
+<section id="technical-support">
+<h2>Technical Support<a class="headerlink" href="#technical-support" title="Permalink to this heading"></a></h2>
+<p>Technical support is provided to all HPC cluster users. The support includes assistance in preparing jobs, installing application software, briefing on the work with the cluster, consulting.</p>
+<p>In some areas (such as computational chemistry), we can also provide scientific support by helping to choose the most appropriate simulation tool for your problem or to create a simulation model.</p>
+<ul class="simple">
+<li><p>HPC user support e-mail: hpc&#64;rtu.lv.</p></li>
+<li><p>Security incidents should be reported to e-mail: hpc&#64;rtu.lv.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="01_getting_access.html" class="btn btn-neutral float-left" title="Getting access" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="03_hardware.html" class="btn btn-neutral float-right" title="HPC hardware specifications" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, RTU HPC center.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
